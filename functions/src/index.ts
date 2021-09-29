@@ -1,9 +1,11 @@
-import * as functions from "firebase-functions";
+import { https, logger } from 'firebase-functions';
+export * from './auth';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+export const helloWorld = https.onRequest((request, response) => {
+  logger.log('Hello logs!', { structuredData: true });
+  response.send('Hello from Firebase!');
+});
+
+export const randomNumber = https.onRequest((req, res) => {
+  res.send(Math.round(Math.random() * 100).toString());
+});
